@@ -6,8 +6,8 @@ Free bilingual (Arabic / English) CV builder that produces an ATS-friendly resum
 
 **Live demo / الموقع:** https://mostaaafaomran-ctrl.github.io/cvforge/
 
-![Arabic CV](screenshot-ar.png)
-![English CV](screenshot-en.png)
+![Arabic CV](6-screenshot-ar.png)
+![English CV](7-screenshot-en.png)
 
 ## Features / المميزات
 
