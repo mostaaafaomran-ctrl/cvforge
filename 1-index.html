@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CVForge | مولد السيرة الذاتية</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark">CV</span><b>Forge</b></div>
+  <div class="bar">
+    <label class="lbl"><span data-t="cvLang">لغة السيرة</span>
+      <select id="cvLang"><option value="ar">العربية</option><option value="en">English</option></select></label>
+    <button id="uiLang" class="ghost">English UI</button>
+    <button id="printBtn" class="primary" data-t="download">تحميل PDF</button>
+  </div>
+</header>
+<main class="layout">
+  <section class="form" id="form">
+    <p class="note" data-t="atsNote">قالب بسيط بعمود واحد ونص حقيقي وعناوين قياسية، عشان أنظمة التوظيف (ATS) تقراه صح. بياناتك بتتحفظ على جهازك بس.</p>
+
+    <fieldset><legend data-t="personal">البيانات الشخصية</legend>
+      <div class="grid">
+        <label><span data-t="name">الاسم الكامل</span><input data-k="name"></label>
+        <label><span data-t="title">المسمى الوظيفي</span><input data-k="title"></label>
+        <label><span data-t="email">البريد الإلكتروني</span><input data-k="email" type="email" dir="ltr"></label>
+        <label><span data-t="phone">الموبايل</span><input data-k="phone" dir="ltr"></label>
+        <label><span data-t="city">المدينة</span><input data-k="city"></label>
+        <label><span data-t="link">رابط (LinkedIn / GitHub)</span><input data-k="link" dir="ltr"></label>
+      </div>
+    </fieldset>
+
+    <fieldset><legend data-t="summary">نبذة مختصرة</legend>
+      <textarea data-k="summary" rows="4"></textarea>
+    </fieldset>
+
+    <fieldset><legend data-t="exp">الخبرات</legend>
+      <div id="expList"></div>
+      <button class="add" data-add="exp" data-t="addExp">+ إضافة خبرة</button>
+    </fieldset>
+
+    <fieldset><legend data-t="edu">التعليم</legend>
+      <div id="eduList"></div>
+      <button class="add" data-add="edu" data-t="addEdu">+ إضافة مؤهل</button>
+    </fieldset>
+
+    <fieldset><legend data-t="skills">المهارات</legend>
+      <label><span data-t="skillsHint">افصل بينها بفاصلة</span><textarea data-k="skills" rows="2"></textarea></label>
+    </fieldset>
+
+    <fieldset><legend data-t="langs">اللغات</legend>
+      <label><span data-t="langsHint">مثال: العربية (لغة أم)، English (Fluent)</span><textarea data-k="langs" rows="2"></textarea></label>
+    </fieldset>
+
+    <div class="row-btns">
+      <button id="sample" class="ghost" data-t="sample">تجربة بيانات مثال</button>
+      <button id="exportJson" class="ghost" data-t="exportJson">حفظ كملف</button>
+      <label class="ghost filebtn"><span data-t="importJson">استرجاع ملف</span><input type="file" id="importJson" accept=".json" hidden></label>
+      <button id="clear" class="danger" data-t="clear">مسح الكل</button>
+    </div>
+  </section>
+
+  <section class="preview-wrap">
+    <div class="preview-label" data-t="preview">معاينة مباشرة</div>
+    <article id="cv" class="cv"></article>
+  </section>
+</main>
+<footer class="foot" data-t="footer">مجاني ومفتوح المصدر. من غير تسجيل ومن غير سيرفر.</footer>
+<script src="app.js"></script>
+</body>
+</html>
