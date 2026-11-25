@@ -15,6 +15,8 @@ Free bilingual (Arabic / English) CV builder that produces an ATS-friendly resum
   معاينة مباشرة وإنت بتكتب.
 - CV in Arabic (RTL) or English (LTR), independent of the interface language.
   السيرة بالعربي (من اليمين) أو بالإنجليزي، منفصلة عن لغة الواجهة.
+- 4 templates (Classic, Modern, Compact, Elegant) and 5 accent colors.
+  4 قوالب (كلاسيك، مودرن، مدمج، أنيق) و5 ألوان.
 - ATS-friendly: one column, real selectable text, standard section headings, no tables, no images.
   مناسبة للـ ATS: عمود واحد، نص حقيقي، عناوين قياسية، من غير جداول أو صور.
 - Download as PDF through the browser print dialog (A4 layout).
