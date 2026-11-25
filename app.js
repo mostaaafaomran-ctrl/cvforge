@@ -1,9 +1,11 @@
 const $=s=>document.querySelector(s);
 const UI={
-ar:{cvLang:'لغة السيرة',download:'تحميل PDF',atsNote:'قالب بسيط بعمود واحد ونص حقيقي وعناوين قياسية، عشان أنظمة التوظيف (ATS) تقراه صح. بياناتك بتتحفظ على جهازك بس.',personal:'البيانات الشخصية',name:'الاسم الكامل',title:'المسمى الوظيفي',email:'البريد الإلكتروني',phone:'الموبايل',city:'المدينة',link:'رابط (LinkedIn / GitHub)',summary:'نبذة مختصرة',exp:'الخبرات',addExp:'+ إضافة خبرة',edu:'التعليم',addEdu:'+ إضافة مؤهل',skills:'المهارات',skillsHint:'افصل بينها بفاصلة',langs:'اللغات',langsHint:'مثال: العربية (لغة أم)، English (Fluent)',sample:'تجربة بيانات مثال',exportJson:'حفظ كملف',importJson:'استرجاع ملف',clear:'مسح الكل',preview:'معاينة مباشرة',footer:'مجاني ومفتوح المصدر. من غير تسجيل ومن غير سيرفر.',uiBtn:'English UI',role:'المسمى / الوظيفة',company:'الشركة',from:'من',to:'إلى',points:'نقاط (كل سطر نقطة)',remove:'حذف',degree:'الدرجة / التخصص',school:'الجامعة / المعهد',confirm:'تمسح كل البيانات؟',empty:'ابدأ بكتابة بياناتك وهتشوف السيرة هنا'},
-en:{cvLang:'CV language',download:'Download PDF',atsNote:'Single-column layout, real text and standard headings so applicant tracking systems (ATS) read it correctly. Your data stays on your device.',personal:'Personal details',name:'Full name',title:'Job title',email:'Email',phone:'Phone',city:'City',link:'Link (LinkedIn / GitHub)',summary:'Summary',exp:'Experience',addExp:'+ Add experience',edu:'Education',addEdu:'+ Add education',skills:'Skills',skillsHint:'Separate with commas',langs:'Languages',langsHint:'e.g. Arabic (Native), English (Fluent)',sample:'Try sample data',exportJson:'Save to file',importJson:'Load file',clear:'Clear all',preview:'Live preview',footer:'Free and open source. No sign-up, no server.',uiBtn:'واجهة عربي',role:'Role',company:'Company',from:'From',to:'To',points:'Bullets (one per line)',remove:'Remove',degree:'Degree / major',school:'University / school',confirm:'Clear all data?',empty:'Start typing and your CV appears here'}};
+ar:{cvLang:'لغة السيرة',tpl:'القالب',tplNames:{classic:'كلاسيك',modern:'مودرن',compact:'مدمج',elegant:'أنيق'},download:'تحميل PDF',atsNote:'قالب بسيط بعمود واحد ونص حقيقي وعناوين قياسية، عشان أنظمة التوظيف (ATS) تقراه صح. بياناتك بتتحفظ على جهازك بس.',personal:'البيانات الشخصية',name:'الاسم الكامل',title:'المسمى الوظيفي',email:'البريد الإلكتروني',phone:'الموبايل',city:'المدينة',link:'رابط (LinkedIn / GitHub)',summary:'نبذة مختصرة',exp:'الخبرات',addExp:'+ إضافة خبرة',edu:'التعليم',addEdu:'+ إضافة مؤهل',skills:'المهارات',skillsHint:'افصل بينها بفاصلة',langs:'اللغات',langsHint:'مثال: العربية (لغة أم)، English (Fluent)',sample:'تجربة بيانات مثال',exportJson:'حفظ كملف',importJson:'استرجاع ملف',clear:'مسح الكل',preview:'معاينة مباشرة',footer:'مجاني ومفتوح المصدر. من غير تسجيل ومن غير سيرفر.',uiBtn:'English UI',role:'المسمى / الوظيفة',company:'الشركة',from:'من',to:'إلى',points:'نقاط (كل سطر نقطة)',remove:'حذف',degree:'الدرجة / التخصص',school:'الجامعة / المعهد',confirm:'تمسح كل البيانات؟',empty:'ابدأ بكتابة بياناتك وهتشوف السيرة هنا'},
+en:{cvLang:'CV language',tpl:'Template',tplNames:{classic:'Classic',modern:'Modern',compact:'Compact',elegant:'Elegant'},download:'Download PDF',atsNote:'Single-column layout, real text and standard headings so applicant tracking systems (ATS) read it correctly. Your data stays on your device.',personal:'Personal details',name:'Full name',title:'Job title',email:'Email',phone:'Phone',city:'City',link:'Link (LinkedIn / GitHub)',summary:'Summary',exp:'Experience',addExp:'+ Add experience',edu:'Education',addEdu:'+ Add education',skills:'Skills',skillsHint:'Separate with commas',langs:'Languages',langsHint:'e.g. Arabic (Native), English (Fluent)',sample:'Try sample data',exportJson:'Save to file',importJson:'Load file',clear:'Clear all',preview:'Live preview',footer:'Free and open source. No sign-up, no server.',uiBtn:'واجهة عربي',role:'Role',company:'Company',from:'From',to:'To',points:'Bullets (one per line)',remove:'Remove',degree:'Degree / major',school:'University / school',confirm:'Clear all data?',empty:'Start typing and your CV appears here'}};
 const CV={ar:{summary:'نبذة مختصرة',exp:'الخبرات العملية',edu:'التعليم',skills:'المهارات',langs:'اللغات',present:'حتى الآن'},en:{summary:'Summary',exp:'Experience',edu:'Education',skills:'Skills',langs:'Languages',present:'Present'}};
-const blank=()=>({ui:'ar',cvLang:'ar',name:'',title:'',email:'',phone:'',city:'',link:'',summary:'',skills:'',langs:'',exp:[],edu:[]});
+const COLORS=['#8c1c3f','#0f5c5c','#1f3a8a','#b45309','#374151'];
+const TPLS=['classic','modern','compact','elegant'];
+const blank=()=>({ui:'ar',cvLang:'ar',tpl:'classic',accent:COLORS[0],name:'',title:'',email:'',phone:'',city:'',link:'',summary:'',skills:'',langs:'',exp:[],edu:[]});
 let S;try{S=Object.assign(blank(),JSON.parse(localStorage.getItem('cvforge')||'{}'))}catch(e){S=blank()}
 const save=()=>localStorage.setItem('cvforge',JSON.stringify(S));
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -13,6 +15,8 @@ function applyUI(){
   document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t(e.dataset.t));
   $('#uiLang').textContent=t('uiBtn');$('#cvLang').value=S.cvLang;
   document.title='CVForge | '+(S.ui==='ar'?'مولد السيرة الذاتية':'CV Builder');
+  $('#tpl').innerHTML=TPLS.map(k=>`<option value="${k}">${t('tplNames')[k]}</option>`).join('');$('#tpl').value=S.tpl;
+  $('#sw').innerHTML=COLORS.map(c=>`<button type="button" class="dot${c===S.accent?' on':''}" data-c="${c}" style="background:${c}" aria-label="${c}"></button>`).join('');
   renderLists();render();
 }
 function renderLists(){
@@ -36,11 +40,13 @@ function renderLists(){
 function render(){
   const L=CV[S.cvLang],dir=S.cvLang==='ar'?'rtl':'ltr';
   const dates=e=>[e.from,e.to||(e.from?L.present:'')].filter(Boolean).join(' - ');
-  const contact=[S.email,S.phone,S.city,S.link].filter(Boolean).map(x=>'<bdi>'+esc(x)+'</bdi>').join(' | ');
+  const contact=[[S.email,1],[S.phone,1],[S.city,0],[S.link,1]].filter(x=>x[0]).map(x=>`<span><bdi${x[1]?' dir="ltr"':''}>${esc(x[0])}</bdi></span>`).join('');
   let h='';
+  if(S.name||S.title||contact){h+='<header class="hd">';
   if(S.name)h+=`<h1>${esc(S.name)}</h1>`;
   if(S.title)h+=`<div class="ttl">${esc(S.title)}</div>`;
   if(contact)h+=`<div class="contact">${contact}</div>`;
+  h+='</header>';}
   if(S.summary.trim())h+=`<h2>${L.summary}</h2><p style="margin:0">${esc(S.summary)}</p>`;
   const ex=S.exp.filter(e=>e.role||e.company);
   if(ex.length)h+=`<h2>${L.exp}</h2>`+ex.map(e=>{const pts=(e.points||'').split('\n').map(x=>x.trim()).filter(Boolean);
@@ -49,7 +55,7 @@ function render(){
   if(ed.length)h+=`<h2>${L.edu}</h2>`+ed.map(e=>`<div class="ent"><div class="h"><span>${esc(e.degree)}</span><span><bdi>${esc(dates(e))}</bdi></span></div><div class="s">${esc(e.school)}</div></div>`).join('');
   if(S.skills.trim())h+=`<h2>${L.skills}</h2><p style="margin:0">${esc(S.skills.split(/[,،\n]/).map(x=>x.trim()).filter(Boolean).join(S.cvLang==='ar'?'، ':', '))}</p>`;
   if(S.langs.trim())h+=`<h2>${L.langs}</h2><p style="margin:0">${esc(S.langs)}</p>`;
-  const cv=$('#cv');cv.dir=dir;cv.lang=S.cvLang;cv.innerHTML=h||`<div class="empty">${t('empty')}</div>`;
+  const cv=$('#cv');cv.dir=dir;cv.lang=S.cvLang;cv.className='cv t-'+S.tpl;cv.style.setProperty('--cva',S.accent);cv.innerHTML=h||`<div class="empty">${t('empty')}</div>`;
 }
 document.addEventListener('input',e=>{
   const el=e.target;
@@ -63,6 +69,8 @@ document.addEventListener('click',e=>{
   if(b.dataset.add){S[b.dataset.add].push(b.dataset.add==='exp'?{role:'',company:'',from:'',to:'',points:''}:{degree:'',school:'',from:'',to:''});save();renderLists();render()}
   if(b.dataset.rm){S[b.dataset.rm].splice(+b.dataset.i,1);save();renderLists();render()}
 });
+$('#tpl').onchange=e=>{S.tpl=e.target.value;save();render()};
+$('#sw').onclick=e=>{const b=e.target.closest('[data-c]');if(!b)return;S.accent=b.dataset.c;save();document.querySelectorAll('#sw .dot').forEach(d=>d.classList.toggle('on',d===b));render()};
 $('#cvLang').onchange=e=>{S.cvLang=e.target.value;save();renderLists();render()};
 $('#uiLang').onclick=()=>{S.ui=S.ui==='ar'?'en':'ar';save();applyUI()};
 $('#printBtn').onclick=()=>{document.title=(S.name||'CV').replace(/[\\/:*?"<>|]/g,'')+' - CV';window.print();setTimeout(applyUI,500)};
